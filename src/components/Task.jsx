@@ -1,7 +1,8 @@
 import React from "react";
+import { CgClose, CgInfo } from 'react-icons/cg'
 import './Task.css'
 
-const Task = ({task, handleTaskClick}) => {
+const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
     return <div 
                 className="task-container"
                 style={task.completed ? {borderLeft: '6px solid chartreuse'} : {}}
@@ -11,7 +12,18 @@ const Task = ({task, handleTaskClick}) => {
                 </div>
 
                 <div className="buttons-container">
-                    <button className="remove-task-button">X</button>
+                    <button 
+                        className="see-task-datails-button"
+                        onClick={() => handleTaskDeletion(task.id)}
+                    >
+                        <CgInfo />
+                    </button>
+                    <button 
+                        className="remove-task-button"
+                        onClick={() => handleTaskDeletion(task.id)}
+                    >
+                        <CgClose />
+                    </button>
                 </div>
             </div>;
 }
