@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {v4 as uuidv4} from 'uuid' 
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 import Header from './components/Header';
 
 import './App.css'
+import TaskDetails from './components/TaskDetails';
 
 const App = () => {
   // let message = "Hello World!";
@@ -55,21 +56,22 @@ const App = () => {
   return(
     <Router>
       <div className="container">
-        <Header />   
+        <Header />  
         <Route 
-          path="/"
-          exact
+          path="localhost:3000" 
+          exact 
           render={() => (
             <>
               <AddTask handleTaskAddition={handleTaskAddition} />
               <Tasks 
                 tasks={tasks} 
-                handleTaskClick={handleTaskClick}
                 handleTaskDeletion={handleTaskDeletion}
+                handleTaskClick={handleTaskClick}
               />
             </>
           )}
         />
+        <Route path="/:taskTitle" exact Component={TaskDetails} />
       </div>
     </Router>
   );
